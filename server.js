@@ -36,7 +36,7 @@ client.on('message', msg => {
   var content = "!report";
 
   if(msg.content.includes(content) !== false){
-    var id = msg.content.substr(9);
+    var id = msg.content.substr(7);
     (async() => {
       if(db.has(message.guild.id)){
         if(!message.guild.member(message.author).hasPermission('MANAGE_MESSAGES')){
