@@ -33,9 +33,9 @@ client.on('message', msg => {
     })
 
   }
-  var content = "!report";
+  var rep = "!report";
 
-  if(msg.content.includes(content) !== false){
+  if(msg.content.includes(rep) !== false){
     var id = msg.content.substr(7);
     (async() => {
       if(db.has(message.guild.id)){
