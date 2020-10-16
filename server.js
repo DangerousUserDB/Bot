@@ -11,6 +11,21 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+  var content = "!help";
+
+  if(msg.content.includes(content) !== false){
+    const exampleEmbed = new Discord.MessageEmbed()
+    .setColor('#0099ff')
+    .setTitle('Help')
+    .setURL('https://discord.riverside.rocks')
+    .setDescription('Learn about how to use this fine bot.')
+    .setThumbnail('https://images.fineartamerica.com/images-medium-large/international-biohazard-symbol-.jpg')
+    .addField('!help', 'Shows this message', true)
+    .addField('!lookup *id*', 'Returns the ammount of times a user was found in our database.', true)
+    .setTimestamp()  
+    channel.send(exampleEmbed);
+  }
+
   var content = "!lookup";
 
   if(msg.content.includes(content) !== false){
@@ -37,12 +52,11 @@ client.on('message', msg => {
 
   if(msg.content.includes(rep) !== false){
     var id = msg.content.substr(7);
-    (async() => {
       if(db.has(message.guild.id)){
-        if(!message.guild.member(message.author).hasPermission('MANAGE_MESSAGES')){
+        if(!msg.guild.member(msg.author).hasPermission('MANAGE_MESSAGES')){
           msg.reply("We are sorry, but you do not have the permisions to do this.")
         }else{
-          // POST a request to the server with the API key that the server has set
+          msg.reply("POST")
         }
       }else{
         if(id == ""){
