@@ -60,7 +60,12 @@ client.on('message', msg => {
       fetch('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details=Reported via Discord Client')
     .then(res => res.json())
     .then(json => {
-        msg.reply("Reported user "+uid+". (Using default reason as `Reported via Discord Client`) Details: "+json.toString())
+      if(json.message == "Sucess"){
+        msg.reply("Reported user "+id+". (Using default reason as `Reported via Discord Client`))
+      }else{
+        msg.reply("Sorry, something went wrong: "+json.message)
+
+      }
     })
     })
     }
