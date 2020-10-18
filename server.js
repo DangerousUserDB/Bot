@@ -52,20 +52,17 @@ client.on('message', msg => {
 
   if(msg.content.includes(rep) !== false){
     var id = msg.content.substr(7);
-      if(db.has(msg.guild.id)){
-        if(!msg.guild.member(msg.author).hasPermission('MANAGE_MESSAGES')){
-          msg.reply("We are sorry, but you do not have the permisions to do this.")
-        }else{
-          msg.reply("POST")
-        }
-      }else{
-        if(id == ""){
-          msg.reply("This server does not have an API key assciated with it. In a secure channel, please use with command with your API key. (ex. `!report abcdefg`) To get your accounts API Key, sign in at https://discord.riverside.rocks/login and view it on the dashboard.");
-        }else{
-          db.push(msg.guild.id, id);
-          msg.reply("Your API key has been saved.");
-        }
-      }
+      var uid = msg.author.id;
+      fetch('https://discord.riverside.rocks/keys.json.php?key='+process.env.ADMIN+'&id='+uid)
+    .then(res => res.json())
+    .then(json => {
+      var user_key = json.key;
+      fetch('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details=Reported via Discord Client')
+    .then(res => res.json())
+    .then(json => {
+        msg.reply("Reported user "+uid+". (Using default reason as `Reported via Discord Client`)")
+    })
+    })
     }
   });
 
