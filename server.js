@@ -61,7 +61,7 @@ client.on('message', msg => {
     .then(res => res.json())
     .then(json => {
       if(json.message == "Sucess"){
-        msg.reply("Reported user "+id+". (Using default reason as `Reported via Discord Client`))
+        msg.reply("Reported user "+id+". (Using default reason: `Reported via Discord Client`)")
       }else{
         msg.reply("Sorry, something went wrong: "+json.message)
 
