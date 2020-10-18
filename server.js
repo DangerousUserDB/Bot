@@ -3,7 +3,7 @@ const client = new Discord.Client();
 require('dotenv').config()
 const fetch = require('node-fetch');
 let jsoning = require('jsoning');
-let database = new jsoning("sql.json");
+let db = new jsoning("sql.json");
 
 
 client.on('ready', () => {
@@ -23,7 +23,7 @@ client.on('message', msg => {
     .addField('!help', 'Shows this message', true)
     .addField('!lookup *id*', 'Returns the ammount of times a user was found in our database.', true)
     .setTimestamp()  
-    channel.send(exampleEmbed);
+    msg.reply(exampleEmbed);
   }
 
   var content = "!lookup";
@@ -52,7 +52,7 @@ client.on('message', msg => {
 
   if(msg.content.includes(rep) !== false){
     var id = msg.content.substr(7);
-      if(db.has(message.guild.id)){
+      if(db.has(msg.guild.id)){
         if(!msg.guild.member(msg.author).hasPermission('MANAGE_MESSAGES')){
           msg.reply("We are sorry, but you do not have the permisions to do this.")
         }else{
@@ -62,12 +62,11 @@ client.on('message', msg => {
         if(id == ""){
           msg.reply("This server does not have an API key assciated with it. In a secure channel, please use with command with your API key. (ex. `!report abcdefg`) To get your accounts API Key, sign in at https://discord.riverside.rocks/login and view it on the dashboard.");
         }else{
-          await db.push(message.guild.id, id);
+          db.push(msg.guild.id, id);
           msg.reply("Your API key has been saved.");
         }
       }
-    })
-  }
-});
+    }
+  });
 
 client.login(process.env.TOKEN);
