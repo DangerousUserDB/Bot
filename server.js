@@ -57,6 +57,7 @@ client.on('message', msg => {
     .then(res => res.json())
     .then(json => {
       var user_key = json.key;
+      console.log('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details=Reported via Discord Client');
       fetch('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details=Reported via Discord Client')
     .then(res => res.json())
     .then(json => {
