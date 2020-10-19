@@ -21,7 +21,7 @@ client.on('message', msg => {
     .setDescription('Learn about how to use this fine bot.')
     .setThumbnail('https://images.fineartamerica.com/images-medium-large/international-biohazard-symbol-.jpg')
     .addField('!help', 'Shows this message', true)
-    .addField('!lookup *id*', 'Returns the ammount of times a user was found in our database.', true)
+    .addField('!lookup *id*', 'Returns the amount of times a user was found in our database.', true)
     .setTimestamp()  
     msg.reply(exampleEmbed);
   }
