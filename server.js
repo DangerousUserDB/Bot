@@ -51,7 +51,7 @@ client.on('message', msg => {
   var rep = "!report";
 
   if(msg.content.includes(rep) !== false){
-    var id = msg.content.substr(7);
+    var id = msg.content.substr(8);
       var uid = msg.author.id;
       fetch('https://discord.riverside.rocks/keys.json.php?key='+process.env.ADMIN+'&id='+uid)
     .then(res => res.json())
