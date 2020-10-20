@@ -22,6 +22,7 @@ client.on('message', msg => {
     .setThumbnail('https://images.fineartamerica.com/images-medium-large/international-biohazard-symbol-.jpg')
     .addField('!help', 'Shows this message', true)
     .addField('!lookup *id*', 'Returns the amount of times a user was found in our database.', true)
+    .addField('!report *id*', 'Reports a user. Grab an API key from https://discord.riverside.rocks/login', true)
     .setTimestamp()  
     msg.reply(exampleEmbed);
   }
@@ -53,6 +54,10 @@ client.on('message', msg => {
   if(msg.content.includes(rep) !== false){
     var id = msg.content.substr(8);
       var uid = msg.author.id;
+	let isnum = /^\d+$/.test(uid);
+	if(isnum == false){
+		msg.reply("Discord IDs can only contain numbers.")
+	}else{
       fetch('https://discord.riverside.rocks/keys.json.php?key='+process.env.ADMIN+'&id='+uid)
     .then(res => res.json())
     .then(json => {
@@ -61,14 +66,15 @@ client.on('message', msg => {
       fetch('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details=Reported via Discord Client')
     .then(res => res.json())
     .then(json => {
-      if(json.message == "Sucess"){
+      if(json.message == "Success"){
         msg.reply("Reported user "+id+". (Using default reason: `Reported via Discord Client`)")
       }else{
-        msg.reply("Sorry, something went wrong: "+json.message)
+        msg.reply("Sorry, something went wrong: "+json.message+" Please note that you get get an API Key at https://discord.riverside.rocks/login")
 
       }
     })
     })
+	}
     }
   });
 
