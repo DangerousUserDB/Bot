@@ -26,6 +26,15 @@ client.on('message', msg => {
     msg.reply(exampleEmbed);
   }
 
+  var content = "!invite";
+
+  if(msg.content.includes(content) !== false){
+    // returns the URL of the invite link
+    // Fill this in with the 
+    var YOUR_CLIENT_ID = "764485265775263784";
+    msg.reply("Invite our bot here: https://discord.com/oauth2/authorize?client_id="+YOUR_CLIENT_ID+"&scope=bot&permissions=3072");
+  }
+
   var content = "!lookup";
 
   if(msg.content.includes(content) !== false){
