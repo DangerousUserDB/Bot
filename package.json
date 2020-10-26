@@ -23,6 +23,7 @@
     "discord.js": "^12.3.1",
     "dotenv": "^8.2.0",
     "jsoning": "^0.8.15",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "statcord.js": "^3.1.1"
   }
 }

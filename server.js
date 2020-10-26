@@ -1,19 +1,28 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const Statcord = require("statcord.js");
 require('dotenv').config()
 const fetch = require('node-fetch');
 let jsoning = require('jsoning');
 let db = new jsoning("sql.json");
 
+const statcord = new Statcord.Client({
+    client,
+    key: process.env.STAT,
+    postCpuStatistics: false, /* Whether to post memory statistics or not, defaults to true */
+    postMemStatistics: false, /* Whether to post memory statistics or not, defaults to true */
+    postNetworkStatistics: false, /* Whether to post memory statistics or not, defaults to true */
+});
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  statcord.autopost();
 });
 
 client.on('message', msg => {
   var content = "!help";
-
   if(msg.content.includes(content) !== false){
+statcord.postCommand(content, msg.author.id);
     const exampleEmbed = new Discord.MessageEmbed()
     .setColor('#0099ff')
     .setTitle('Help')
@@ -28,8 +37,8 @@ client.on('message', msg => {
   }
 
   var content = "!lookup";
-
   if(msg.content.includes(content) !== false){
+statcord.postCommand(content, msg.author.id);
       var id = msg.content.substr(8);
       console.log(id+" was requested.")
       fetch('https://discord.riverside.rocks/check.json.php?id='+id)
@@ -50,8 +59,8 @@ client.on('message', msg => {
 
   }
   var rep = "!report";
-
   if(msg.content.includes(rep) !== false){
+statcord.postCommand(rep, msg.author.id);
     var id = msg.content.substr(8);
       var uid = msg.author.id;
 	let isnum = /^\d+$/.test(uid);
