@@ -20,6 +20,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+	if(!msg.content.startsWith("!")){ process.exit() }
   var content = "!help";
   if(msg.content.includes(content) !== false){
 statcord.postCommand(content, msg.author.id);
