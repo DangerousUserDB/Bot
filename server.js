@@ -20,14 +20,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    fetch('https://discord.riverside.rocks/stats.json.php')
-    .then(res => res.json())
-    .then(json => {
-        client.user.setPresence({ activity: { name: 'with '+json.reports+' reports' }, status: 'online' })
-        .then(console.log)
-         .catch(console.error);
 
-    })
   
   //if(msg.content.startsWith("!") !== true){
      //process.exit() 
@@ -46,6 +39,14 @@ statcord.postCommand(content, msg.author.id);
     .addField('!report *id*', 'Reports a user. Grab an API key from https://discord.riverside.rocks/login', true)
     .setTimestamp()  
     msg.reply(exampleEmbed);
+	      fetch('https://discord.riverside.rocks/stats.json.php')
+    .then(res => res.json())
+    .then(json => {
+        client.user.setPresence({ activity: { name: 'with '+json.reports+' reports' }, status: 'online' })
+        .then(console.log)
+         .catch(console.error);
+
+    })
   }
 
   var content = "!invite";
@@ -55,6 +56,14 @@ statcord.postCommand(content, msg.author.id);
     // Fill this in with the 
     var YOUR_CLIENT_ID = "764485265775263784";
     msg.reply("Invite our bot here: https://discord.com/oauth2/authorize?client_id="+YOUR_CLIENT_ID+"&scope=bot&permissions=3072");
+	      fetch('https://discord.riverside.rocks/stats.json.php')
+    .then(res => res.json())
+    .then(json => {
+        client.user.setPresence({ activity: { name: 'with '+json.reports+' reports' }, status: 'online' })
+        .then(console.log)
+         .catch(console.error);
+
+    })
   }
 
   var content = "!lookup";
@@ -68,6 +77,14 @@ statcord.postCommand(content, msg.author.id);
 
     
         if(json.reports !== ""){
+		    fetch('https://discord.riverside.rocks/stats.json.php')
+    .then(res => res.json())
+    .then(json => {
+        client.user.setPresence({ activity: { name: 'with '+json.reports+' reports' }, status: 'online' })
+        .then(console.log)
+         .catch(console.error);
+
+    })
             if(typeof json.reports == 'undefined'){
                 msg.reply("Invalid user.")
             }else{
