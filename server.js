@@ -20,7 +20,7 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	      fetch('https://discord.riverside.rocks/stats.json.php)
+	      fetch('https://discord.riverside.rocks/stats.json.php')
     .then(res => res.json())
     .then(json => {
 		      	client.user.setPresence({ activity: { name: 'with '+json.reports+' reports' }, status: 'online' })
