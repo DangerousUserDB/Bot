@@ -9,9 +9,9 @@ let db = new jsoning("sql.json");
 const statcord = new Statcord.Client({
     client,
     key: process.env.STAT,
-    postCpuStatistics: false, /* Whether to post memory statistics or not, defaults to true */
-    postMemStatistics: false, /* Whether to post memory statistics or not, defaults to true */
-    postNetworkStatistics: false, /* Whether to post memory statistics or not, defaults to true */
+    postCpuStatistics: true, /* Whether to post memory statistics or not, defaults to true */
+    postMemStatistics: true, /* Whether to post memory statistics or not, defaults to true */
+    postNetworkStatistics: true, /* Whether to post memory statistics or not, defaults to true */
 });
 
 client.on('ready', () => {
@@ -20,6 +20,9 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
+	client.user.setPresence({ activity: { name: 'with lots of reports' }, status: 'online' })
+  .then(console.log)
+  .catch(console.error);
   //if(msg.content.startsWith("!") !== true){
      //process.exit() 
   //}
