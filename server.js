@@ -20,16 +20,14 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-	      fetch('https://discord.riverside.rocks/stats.json.php')
+    fetch('https://discord.riverside.rocks/stats.json.php')
     .then(res => res.json())
     .then(json => {
-		      	client.user.setPresence({ activity: { name: 'with '+json.reports+' reports' }, status: 'online' })
-		      .then(console.log)
-  			.catch(console.error);
+        client.user.setPresence({ activity: { name: 'with '+json.reports+' reports' }, status: 'online' })
+        .then(console.log)
+         .catch(console.error);
 
     })
-
-  }
   
   //if(msg.content.startsWith("!") !== true){
      //process.exit() 
