@@ -26,7 +26,7 @@ client.on('message', msg => {
      //process.exit() 
   //}
   var content = "!help";
-  if(msg.content.includes(content) !== false){
+  if(msg.content.startsWith(content) !== false){
 statcord.postCommand(content, msg.author.id);
     const exampleEmbed = new Discord.MessageEmbed()
     .setColor('#0099ff')
@@ -51,7 +51,7 @@ statcord.postCommand(content, msg.author.id);
 
   var content = "!invite";
 
-  if(msg.content.includes(content) !== false){
+  if(msg.content.startsWith(content) !== false){
     // returns the URL of the invite link
     // Fill this in with the 
     var YOUR_CLIENT_ID = "764485265775263784";
@@ -67,7 +67,7 @@ statcord.postCommand(content, msg.author.id);
   }
 
   var content = "!lookup";
-  if(msg.content.includes(content) !== false){
+  if(msg.content.startsWith(content) !== false){
 statcord.postCommand(content, msg.author.id);
       var id = msg.content.substr(8);
       console.log(id+" was requested.")
@@ -97,7 +97,7 @@ statcord.postCommand(content, msg.author.id);
 
   }
   var rep = "!report";
-  if(msg.content.includes(rep) !== false){
+  if(msg.content.startsWith(rep) !== false){
 statcord.postCommand(rep, msg.author.id);
     var id = msg.content.substr(8);
       var uid = msg.author.id;
