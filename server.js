@@ -36,7 +36,7 @@ statcord.postCommand(content, msg.author.id);
     .setThumbnail('https://images.fineartamerica.com/images-medium-large/international-biohazard-symbol-.jpg')
     .addField('!help', 'Shows this message', true)
     .addField('!lookup *id*', 'Returns the amount of times a user was found in our database.', true)
-    .addField('!report *id* *reason*', 'Reports a user. Grab an API key from https://discord.riverside.rocks/login', true)
+    .addField('!report *id*', 'Reports a user. Grab an API key from https://discord.riverside.rocks/login', true)
     .setTimestamp()  
     msg.reply(exampleEmbed);
 	      fetch('https://discord.riverside.rocks/stats.json.php')
@@ -109,20 +109,12 @@ statcord.postCommand(rep, msg.author.id);
     .then(res => res.json())
     .then(json => {
       var user_key = json.key;
-      var messageobj = msg.content.split(" ")
-      messageobj.shift()
-      messageobj.shift()
-      if (messageobj.length == 0){
-      msg.reply("Please provide a reason!");
-return;
-      } 
-     var reason = messageobj.join(" ")
-      console.log('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details='+reason);
-      fetch('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details='+reason)
+      console.log('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details=Reported via Discord Client');
+      fetch('https://discord.riverside.rocks/report.json.php?key='+user_key+'&id='+id+'&details=Reported via Discord Client')
     .then(res => res.json())
     .then(json => {
       if(json.message == "Success"){
-        msg.reply(`Successfully reported \`${id}\` with reason \`${reason}\``)
+        msg.reply("Reported user "+id+". (Using default reason: `Reported via Discord Client`)")
       }else{
         msg.reply("Sorry, something went wrong: "+json.message+" Please note that you get get an API Key at https://discord.riverside.rocks/login")
 
